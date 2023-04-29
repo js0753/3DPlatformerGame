@@ -11,7 +11,7 @@ public class playerMovement : MonoBehaviour
     public Vector3 unitRight;
     public float verticalVelocity;
     public float upwardForce;
-    float gravity = -0.0098f ;
+    float gravity = -9.8f ;
     void Start()
     {
         unitForward = new Vector3(0,0,0.01f);
@@ -52,7 +52,10 @@ public class playerMovement : MonoBehaviour
         {
             upwardForce = 0.0f;
         }
-        
+        if (Input.GetButton("MyJump") && hasColliderAtNewPos)
+        {
+            verticalVelocity = 200.0f * Time.deltaTime;
+        }
         playerModel.transform.position = playerModel.transform.position + new Vector3(0.0f, verticalVelocity, 0.0f);
         if (Input.GetButton("Forward")) {
             playerModel.transform.position += unitForward;
